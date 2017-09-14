@@ -1,28 +1,33 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Ball : MonoBehaviour {
+	public float speed;
+	public Vector2 startPosition;
 
-	private const int THRUST = 1;
 
-	public Rigidbody2D body;
 
-	void Start () {
-		Rigidbody2D body = GetComponent<Rigidbody2D>();
-		body.position = new Vector2(0, -525);
-		body.velocity = Vector2.zero;
-		if (Random.Range(0, 2) == 0) {
-			body.AddForce(transform.up + transform.right * THRUST);
+	void Start() {
+		gameObject.tag = "Ball";
+
+		Rigidbody2D rigidbody = GetComponent<Rigidbody2D>();
+
+		rigidbody.position = startPosition;
+		rigidbody.velocity = Vector2.zero;
+
+		// Give it a random starting direction;
+		if(Random.Range(0, 2) == 0) {
+			rigidbody.AddForce(transform.up + transform.right * speed);
 		} else {
-			body.AddForce(transform.up - transform.right * THRUST);
-
+			rigidbody.AddForce(transform.up - transform.right * speed);
 		}
+
 	}
 
-	void OnTriggerExit2D(Collider2D col) {
-		if (col.gameObject.name == "Bottom Wall") {
+
+	void OnTriggerExit2D(Collider2D other) {
+		if (other.gameObject.name == "Bottom Wall") {
 			Start();
 		}
 	}
+
 }

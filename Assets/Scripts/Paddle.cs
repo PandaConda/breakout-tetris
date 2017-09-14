@@ -1,64 +1,60 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+
+
 
 public class Paddle : MonoBehaviour {
+	public float maxMovementSpeed = 10f;
+	public float paddleScale = 200f;
+		
+	private Rigidbody2D _mRigidbody;
+	private Renderer _mRenderer;
+	private float _paddleWidth;
+	private bool canGoLeft = true;
+	private bool canGoRight = true;
 
-	private const int SPEED = 10;
 
-	Rigidbody2D body;
-	bool leftPressed, rightPressed;
-	bool leftEdge, rightEdge;
-	int vx; // x velocity
 
 	void Start () {
-		body = gameObject.GetComponent<Rigidbody2D>();
-		leftPressed = false;
-		rightPressed = false;
-		leftEdge = false;
-		rightEdge = false;
-		vx = 0;
+		_mRigidbody = GetComponent<Rigidbody2D>();
+		_mRenderer = GetComponent<Renderer>();
+
+		transform.localScale = new Vector3(paddleScale, paddleScale, 1);
+
+		_paddleWidth = _mRenderer.bounds.size.x;
 	}
+
 	
 	void Update () {
-		if (Input.GetKey("left") && !leftEdge) {
-			leftPressed = true;
-			rightEdge = false;
-			vx = -1;
-		} else if (Input.GetKeyUp("left")) {
-			leftPressed = false;
-			vx = rightPressed ? 1 : 0;
-		} else if (Input.GetKey("right") & !rightEdge) {
-			rightPressed = true;
-			leftEdge = false;
-			vx = 1;
-		} else if (Input.GetKeyUp("right")) {
-			rightPressed = false;
-			vx = leftPressed ? -1 : 0;
-		}
+		float input = Input.GetAxis("Horizontal");
 
-		if (vx != 0) {
-			body.position += Vector2.right * vx * SPEED;
+		if(!canGoLeft && input < 0 || !canGoRight && input > 0)
+			return;
+
+		if(!canGoLeft && input > 0)
+			canGoLeft = true;
+
+		if(!canGoRight && input < 0)
+			canGoRight = true;
+
+		_mRigidbody.position += Vector2.right * input * maxMovementSpeed * Time.deltaTime;
+        transform.position = (Vector2)transform.position + Vector2.right * input * maxMovementSpeed * Time.deltaTime;
+    }
+
+
+	void OnTriggerEnter2D(Collider2D other) {
+		if (other.gameObject.name == "Left Wall") {
+			canGoLeft = false;
+
+			Vector2 position = _mRigidbody.position;
+			position.x = other.bounds.max.x + (_paddleWidth / 2);
+			_mRigidbody.position = position;
+		} else if (other.gameObject.name == "Right Wall") {
+			canGoRight = false;
+
+			Vector2 position = _mRigidbody.position;
+			position.x = other.bounds.min.x - (_paddleWidth / 2);
+			_mRigidbody.position = position;
 		}
 	}
 
-	void OnTriggerEnter2D(Collider2D col) {
-		if (col.gameObject.name == "Left Wall") {
-			leftEdge = true;
-			Vector2 p = body.position;
-			p.x = col.bounds.max.x
-				+ (body.GetComponent<Renderer>()
-						.bounds.size.x / 2);
-			body.position = p;
-			vx = 0;
-		} else if (col.gameObject.name == "Right Wall") {
-			rightEdge = true;
-			Vector2 p = body.position;
-			p.x = col.bounds.min.x
-				- (body.GetComponent<Renderer>()
-						.bounds.size.x / 2);
-			body.position = p;
-			vx = 0;
-		}
-	}
 }
