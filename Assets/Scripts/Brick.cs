@@ -77,13 +77,13 @@ public class Brick : MonoBehaviour {
 
 	void SpawnBrick(Vector2 direction) {
 		if(direction == Vector2.up) {
-			BrickManager.instance.SpawnBrick(x, y - 1);
+			BrickManager.instance.SpawnBrick(x, y - 1, true);
 		} else if(direction == Vector2.right) {
-			BrickManager.instance.SpawnBrick(x + 1, y);
+			BrickManager.instance.SpawnBrick(x + 1, y, true);
 		} else if(direction == Vector2.down) {
-			BrickManager.instance.SpawnBrick(x, y + 1);
+			BrickManager.instance.SpawnBrick(x, y + 1, true);
 		} else if(direction == Vector2.left) {
-			BrickManager.instance.SpawnBrick(x - 1, y);
+			BrickManager.instance.SpawnBrick(x - 1, y, true);
 		}
 	}
 
