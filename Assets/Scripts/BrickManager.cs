@@ -44,18 +44,14 @@ public class BrickManager : MonoBehaviour {
 		SpawnBrick(1, 0);
 		SpawnBrick(2, 0);
 		SpawnBrick(3, 0);
-		SpawnBrick(1, 1);
-		SpawnBrick(2, 1);
-		SpawnBrick(3, 1);
-		SpawnBrick(4, 1);
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+        /*		SpawnBrick(1, 1);
+                SpawnBrick(2, 1);
+                SpawnBrick(3, 1);
+                SpawnBrick(4, 1);*/
+    }
 
-	public void SpawnBrick(int x, int y) {
+
+    public void SpawnBrick(int x, int y) {
 		Debug.Log("expanding" + x + " - " + y);
 		// Check if were within bounds
 		if(x >= 0 && x < rowSize && y >= 0 && y < columnSize) {
