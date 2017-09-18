@@ -403,6 +403,16 @@ Prefab:
       propertyPath: randomSeed
       value: -819976890
       objectReference: {fileID: 0}
+    - target: {fileID: 114402866853474964, guid: 000e0346b6968d34d86d17efd84535c9,
+        type: 2}
+      propertyPath: startSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114402866853474964, guid: 000e0346b6968d34d86d17efd84535c9,
+        type: 2}
+      propertyPath: speedUpFactor
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 000e0346b6968d34d86d17efd84535c9, type: 2}
   m_IsPrefabParent: 0
