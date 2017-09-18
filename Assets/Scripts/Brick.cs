@@ -5,6 +5,10 @@ using UnityEngine;
 public class Brick : MonoBehaviour {
 	public float enableColliderDelay = 2f;
 	public int x,y;
+    public int emitParticlesAtSpawn = 100;
+
+    private ParticleSystem _particleSystem;
+
 
 //	private Rigidbody2D _mRigidbody;
 //	private Renderer _mRenderer;
@@ -20,15 +24,22 @@ public class Brick : MonoBehaviour {
 
 	void OnDisable() {
 		CancelInvoke();
-	}
+
+// #STEFFEN spawn on destroy particle effect here!
+    }
 
 
 	void Start() {
-//		_mRigidbody = GetComponent<Rigidbody2D>();
-//		_mRenderer = GetComponent<Renderer>();
+        //		_mRigidbody = GetComponent<Rigidbody2D>();
+        //		_mRenderer = GetComponent<Renderer>();
 
-//		_width = _mRenderer.bounds.size.x;
-//		_height = _mRenderer.bounds.size.y;
+        //		_width = _mRenderer.bounds.size.x;
+        //		_height = _mRenderer.bounds.size.y;
+
+        _particleSystem = GetComponent<ParticleSystem>();
+
+        if (_particleSystem)
+            _particleSystem.Emit(emitParticlesAtSpawn);
 	}
 
 
@@ -42,7 +53,7 @@ public class Brick : MonoBehaviour {
 		// If thats the case determine on what side and spawn a brick at that location
 		if(collision.gameObject.CompareTag("Ball")) {
 			float angle = Vector2.Angle(collision.contacts[0].normal, Vector2.up);
-
+            
 			if(Mathf.Approximately(angle, 180)) {
 				SpawnBrick(Vector2.up);
 //				Debug.Log("hit on top");

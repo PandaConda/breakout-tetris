@@ -46,10 +46,12 @@ public class BrickManager : MonoBehaviour {
 		SpawnBrick(1, 0, false);
 		SpawnBrick(2, 0, false);
 		SpawnBrick(3, 0, false);
+		/*
 		SpawnBrick(1, 1, false);
 		SpawnBrick(2, 1, false);
 		SpawnBrick(3, 1, false);
 		SpawnBrick(4, 1, false);
+		*/
 	}
 
 	public void Reset() {
