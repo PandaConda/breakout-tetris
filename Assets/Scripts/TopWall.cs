@@ -17,7 +17,7 @@ public class TopWall : MonoBehaviour
             x /= BrickManager.instance.horizontalOffset;
             Debug.Log("res " + x);
 
-            BrickManager.instance.SpawnBrick((int)x, 0);
+            BrickManager.instance.SpawnBrick((int)x, 0, true);
         }
     }
 }
