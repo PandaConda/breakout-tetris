@@ -31,31 +31,44 @@ public class BrickManager : MonoBehaviour {
 	public GameObject brickPrefab;
 
 	private Brick[,] brickMatrix;
-
-
-
-	void Init() {
-
-	}
+	private Score score;
 
 	void Start () {
-		brickMatrix = new Brick[rowSize, columnSize];
-		SpawnBrick(0, 0);
-		SpawnBrick(1, 0);
-		SpawnBrick(2, 0);
-		SpawnBrick(3, 0);
-		SpawnBrick(1, 1);
-		SpawnBrick(2, 1);
-		SpawnBrick(3, 1);
-		SpawnBrick(4, 1);
+		score = (Score)GameObject.Find("Score Value").GetComponent(typeof(Score));
+		Init();
 	}
-	
+
+	public void Init() {
+		brickMatrix = new Brick[rowSize, columnSize];
+		SpawnBrick(0, 0, false);
+		SpawnBrick(1, 0, false);
+		SpawnBrick(2, 0, false);
+		SpawnBrick(3, 0, false);
+		SpawnBrick(1, 1, false);
+		SpawnBrick(2, 1, false);
+		SpawnBrick(3, 1, false);
+		SpawnBrick(4, 1, false);
+	}
+
+	public void Reset() {
+		// Clean up removed row, plus move everything below up
+		for (int y = 0; y < columnSize; y++) {
+			for (int x = 0; x < rowSize; x++) {
+				if (brickMatrix[x, y] != null) {
+					Destroy(brickMatrix[x, y].gameObject);
+					brickMatrix[x, y] = null;
+				}
+			}
+		}
+		Init();
+	}
+
 	// Update is called once per frame
 	void Update () {
 		
 	}
 
-	public void SpawnBrick(int x, int y) {
+	public void SpawnBrick(int x, int y, bool givePoint) {
 		Debug.Log("expanding" + x + " - " + y);
 		// Check if were within bounds
 		if(x >= 0 && x < rowSize && y >= 0 && y < columnSize) {
@@ -69,11 +82,14 @@ public class BrickManager : MonoBehaviour {
 			brickMatrix[x, y].x = x;
 			brickMatrix[x, y].y = y;
 
+			if (givePoint) {
+				score.SpawnBrick();
+			}
+
 			// Since we spawned a new brick we need to check if it has filled the row
 			CheckFullRows();
 		}
 	}
-
 
 	// #TODO atm bruteforce by checking whole field, could be done more efficiently
 	void CheckFullRows() {
@@ -91,9 +107,8 @@ public class BrickManager : MonoBehaviour {
 
 	void RemoveRow(int height) {
 		Debug.Log("Row removed at height: " + height);
-		// HOOK IN HERE FOR ROW REMOVED EVENT
-
-
+		// TODO increment score
+		score.RemoveRow();
 
 		// Clean up removed row, plus move everything below up
 		for(int x = 0; x < rowSize; x++) {
