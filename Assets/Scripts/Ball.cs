@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 public class Ball : MonoBehaviour {
-	public float speed;
+	public float speed = 1f;
 	public Vector2 startPosition;
 
 
@@ -16,9 +16,9 @@ public class Ball : MonoBehaviour {
 
 		// Give it a random starting direction;
 		if(Random.Range(0, 2) == 0) {
-			rigidbody.AddForce(transform.up + transform.right * speed);
+			rigidbody.AddForce((-transform.up + 0.1f * transform.right).normalized * speed);
 		} else {
-			rigidbody.AddForce(transform.up - transform.right * speed);
+			rigidbody.AddForce((-transform.up - 0.1f * transform.right).normalized * speed);
 		}
 
 	}
