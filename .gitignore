@@ -36,3 +36,7 @@ sysinfo.txt
 
 # vim swapfiles
 *.swp
+
+# windows build
+*.exe
+/*_Data/
