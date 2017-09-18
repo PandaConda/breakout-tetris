@@ -31,15 +31,17 @@ public class BrickManager : MonoBehaviour {
 	public GameObject brickPrefab;
 
 	private Brick[,] brickMatrix;
+	private Ball ball;
 	private Score score;
 
 	void Start () {
+		ball = (Ball)GameObject.Find("Ball_Particles").GetComponent(typeof(Ball));
 		score = (Score)GameObject.Find("Score Value").GetComponent(typeof(Score));
+		brickMatrix = new Brick[rowSize, columnSize];
 		Init();
 	}
 
 	public void Init() {
-		brickMatrix = new Brick[rowSize, columnSize];
 		SpawnBrick(0, 0, false);
 		SpawnBrick(1, 0, false);
 		SpawnBrick(2, 0, false);
@@ -107,8 +109,8 @@ public class BrickManager : MonoBehaviour {
 
 	void RemoveRow(int height) {
 		Debug.Log("Row removed at height: " + height);
-		// TODO increment score
 		score.RemoveRow();
+		ball.SpeedUp();
 
 		// Clean up removed row, plus move everything below up
 		for(int x = 0; x < rowSize; x++) {
@@ -128,6 +130,4 @@ public class BrickManager : MonoBehaviour {
 			}
 		}
 	}
-
-
 }

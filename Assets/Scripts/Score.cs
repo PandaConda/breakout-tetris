@@ -22,19 +22,16 @@ public class Score : MonoBehaviour {
 	}
 
 	public void Reset() {
-		Debug.Log("reset score");
 		currentScore = 0;
 		textbox.text = currentScore.ToString();
 	}
 
 	public void SpawnBrick() {
-		Debug.Log("spawn brick points awarded");
 		currentScore += pointsPerBrickSpawned;
 		textbox.text = currentScore.ToString();
 	}
 
 	public void RemoveRow() {
-		Debug.Log("remove row points awarded");
 		currentScore += pointsPerRowCleared;
 		textbox.text = currentScore.ToString();
 	}
