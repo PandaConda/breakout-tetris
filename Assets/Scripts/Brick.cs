@@ -6,6 +6,9 @@ public class Brick : MonoBehaviour {
 	public float enableColliderDelay = 2f;
 	public int x,y;
 	public GameObject brickSpawn;
+    public int emitParticlesAtSpawn = 100;
+
+    private ParticleSystem _particleSystem;
 
 //	private Rigidbody2D _mRigidbody;
 //	private Renderer _mRenderer;
@@ -21,15 +24,22 @@ public class Brick : MonoBehaviour {
 
 	void OnDisable() {
 		CancelInvoke();
-	}
+
+// #STEFFEN spawn on destroy particle effect here!
+    }
 
 
 	void Start() {
-//		_mRigidbody = GetComponent<Rigidbody2D>();
-//		_mRenderer = GetComponent<Renderer>();
+        //		_mRigidbody = GetComponent<Rigidbody2D>();
+        //		_mRenderer = GetComponent<Renderer>();
 
-//		_width = _mRenderer.bounds.size.x;
-//		_height = _mRenderer.bounds.size.y;
+        //		_width = _mRenderer.bounds.size.x;
+        //		_height = _mRenderer.bounds.size.y;
+
+        _particleSystem = GetComponent<ParticleSystem>();
+
+        if (_particleSystem)
+            _particleSystem.Emit(emitParticlesAtSpawn);
 	}
 
 
@@ -43,7 +53,7 @@ public class Brick : MonoBehaviour {
 		// If thats the case determine on what side and spawn a brick at that location
 		if(collision.gameObject.CompareTag("Ball")) {
 			float angle = Vector2.Angle(collision.contacts[0].normal, Vector2.up);
-
+            
 			if(Mathf.Approximately(angle, 180)) {
 				SpawnBrick(Vector2.up);
 //				Debug.Log("hit on top");
@@ -71,6 +81,7 @@ public class Brick : MonoBehaviour {
 
 	void SpawnBrick(Vector2 direction) {
 		if(direction == Vector2.up) {
+<<<<<<< HEAD
 			BrickManager.instance.SpawnBrick(x, y - 1);
 			//Instantiate(brickSpawn, x, y, -1);
 		} else if(direction == Vector2.right) {
@@ -82,6 +93,15 @@ public class Brick : MonoBehaviour {
 		} else if(direction == Vector2.left) {
 			BrickManager.instance.SpawnBrick(x - 1, y);
 			//Instantiate(brickSpawn, x, -1, y);
+=======
+			BrickManager.instance.SpawnBrick(x, y - 1, true);
+		} else if(direction == Vector2.right) {
+			BrickManager.instance.SpawnBrick(x + 1, y, true);
+		} else if(direction == Vector2.down) {
+			BrickManager.instance.SpawnBrick(x, y + 1, true);
+		} else if(direction == Vector2.left) {
+			BrickManager.instance.SpawnBrick(x - 1, y, true);
+>>>>>>> 6994059390fa630d29b89d260b3c7f0eadc2a421
 		}
 	}
 

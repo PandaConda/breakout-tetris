@@ -36,8 +36,8 @@ public class Paddle : MonoBehaviour {
 		if(!canGoRight && input < 0)
 			canGoRight = true;
 
-		_mRigidbody.position += Vector2.right * input * maxMovementSpeed * Time.deltaTime;
-        transform.position = (Vector2)transform.position + Vector2.right * input * maxMovementSpeed * Time.deltaTime;
+		_mRigidbody.position = _mRigidbody.position + Vector2.right * input * maxMovementSpeed * Time.deltaTime;
+//        transform.position = (Vector2)transform.position + Vector2.right * input * maxMovementSpeed * Time.deltaTime;
     }
 
 
