@@ -1,10 +1,16 @@
 fileFormatVersion: 2
 guid: 1814290cae2692e439a892b78b3a3e77
-timeCreated: 1505310413
+timeCreated: 1506071493
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - brickSpawnEffect: {fileID: 1496934153032850, guid: 39c27f06fc771f3419f72a9c7560f5ff,
+      type: 2}
+  - getPointsEffect: {fileID: 1870270351727194, guid: b8b2fae56181cc14893e996c19d9e3aa,
+      type: 2}
+  - brickPrefab: {fileID: 1395133788390412, guid: 31aba691a79fff5489de9d5b9f7ade53,
+      type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

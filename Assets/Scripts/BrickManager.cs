@@ -141,7 +141,7 @@ public class BrickManager : MonoBehaviour {
 			}
 		}
 
-        _audioSource.clip = clearRowSounds[Random.Range(0, 2)];
+		_audioSource.clip = clearRowSounds[Random.Range((int)0, (int)2)];
         _audioSource.Play();
     }
 }

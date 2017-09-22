@@ -48,16 +48,6 @@ public class Ball : MonoBehaviour {
 		}
 	}
 
-<<<<<<< HEAD
-	//Create particle effects when the ball hits the walls 
-	void OnCollisionEnter2D (Collision2D collision) {
-		if (collision.transform.tag == "Wall" ) {
-			Debug.Log ("i fired");
-			Instantiate(wallEffect, collision.contacts[0].point, Quaternion.LookRotation(collision.contacts[0].normal, Vector3.up));
-		}
-	}
-
-=======
 	public void SpeedUp() {
 		Vector2 v = body.velocity / speed;
 		speed += speedUpFactor;
@@ -72,6 +62,10 @@ public class Ball : MonoBehaviour {
         if (collision.gameObject.CompareTag("Wall"))
         {
             wallAudio.Play();
+			if (collision.transform.tag == "Wall" ) {
+				Debug.Log ("i fired");
+				Instantiate(wallEffect, collision.contacts[0].point, Quaternion.LookRotation(collision.contacts[0].normal, Vector3.up));
+			}
         }
         else if (collision.gameObject.CompareTag("Wall"))
         {
@@ -82,7 +76,6 @@ public class Ball : MonoBehaviour {
             brickAudio.Play();
         }
     }
->>>>>>> 6994059390fa630d29b89d260b3c7f0eadc2a421
 }
 
 // 
