@@ -3,7 +3,7 @@
 public class Ball : MonoBehaviour {
 	public float speed;
 	public Vector2 startPosition;
-
+	public GameObject wallEffect; 
 
 
 	void Start() {
@@ -30,4 +30,14 @@ public class Ball : MonoBehaviour {
 		}
 	}
 
+	//Create particle effects when the ball hits the walls 
+	void OnCollisionEnter2D (Collision2D collision) {
+		if (collision.transform.tag == "Wall" ) {
+			Debug.Log ("i fired");
+			Instantiate(wallEffect, collision.contacts[0].point, Quaternion.LookRotation(collision.contacts[0].normal, Vector3.up));
+		}
+	}
+
 }
+
+// 

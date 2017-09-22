@@ -4,6 +4,8 @@ public class BrickManager : MonoBehaviour {
 	#region Singelton Pattern
 	private static BrickManager brickManager;
 
+	public GameObject brickSpawnEffect;
+	public GameObject getPointsEffect;
 	public static BrickManager instance {
 		get {
 			if(!brickManager) {
@@ -65,6 +67,7 @@ public class BrickManager : MonoBehaviour {
 
 			// Else spawn a block
 			GameObject brick = Instantiate(brickPrefab, new Vector2(startPosition.x + x * horizontalOffset, startPosition.y + -y * verticalOffset), Quaternion.identity, transform) as GameObject;
+			GameObject spawnBrick = Instantiate(brickSpawnEffect, new Vector2(startPosition.x + x * horizontalOffset, startPosition.y + -y * verticalOffset), Quaternion.identity, transform) as GameObject;;
 			brickMatrix[x, y] = brick.GetComponent<Brick>();
 			brickMatrix[x, y].x = x;
 			brickMatrix[x, y].y = y;
@@ -98,6 +101,7 @@ public class BrickManager : MonoBehaviour {
 		// Clean up removed row, plus move everything below up
 		for(int x = 0; x < rowSize; x++) {
 			Destroy(brickMatrix[x, height].gameObject);
+			Instantiate(getPointsEffect, brickMatrix[x, height].transform.position, Quaternion.identity);
 		}
 
 		// Move all rows below, one up
