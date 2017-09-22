@@ -413,7 +413,8 @@ Prefab:
       propertyPath: speedUpFactor
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 96066988613690802, guid: 000e0346b6968d34d86d17efd84535c9, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 000e0346b6968d34d86d17efd84535c9, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &400104166
@@ -1427,7 +1428,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1814290cae2692e439a892b78b3a3e77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rowSize: 5
+  rowSize: 6
   columnSize: 6
   startPosition: {x: -400, y: 700}
   horizontalOffset: 170
@@ -1564,6 +1565,7 @@ GameObject:
   - component: {fileID: 2099198925}
   - component: {fileID: 2099198924}
   - component: {fileID: 2099198926}
+  - component: {fileID: 2099198927}
   m_Layer: 0
   m_Name: Top Wall
   m_TagString: Untagged
@@ -1651,3 +1653,14 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 5.7, y: 0.15}
   m_EdgeRadius: 0
+--- !u!114 &2099198927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2099198923}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 903ced4b9b073d043a50d61e3e67f9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
