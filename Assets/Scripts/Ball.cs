@@ -4,7 +4,12 @@ public class Ball : MonoBehaviour {
 	public Vector2 startPosition;
 	public float startSpeed;
 	public float speedUpFactor;
-	private float speed;
+//public AudioClip collisionSound;
+    public AudioSource wallAudio;
+    public AudioSource paddleAudio;
+    public AudioSource brickAudio;
+
+    private float speed;
 	private Lives lives;
 	private Rigidbody2D body;
 
@@ -47,4 +52,23 @@ public class Ball : MonoBehaviour {
 		speed += speedUpFactor;
 		body.velocity = v * speed;
 	}
+
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        // Check if we collide with ball
+        // If thats the case determine on what side and spawn a brick at that location
+        if (collision.gameObject.CompareTag("Wall"))
+        {
+            wallAudio.Play();
+        }
+        else if (collision.gameObject.CompareTag("Wall"))
+        {
+            paddleAudio.Play();
+        }
+        else if (collision.gameObject.CompareTag("Wall"))
+        {
+            brickAudio.Play();
+        }
+    }
 }

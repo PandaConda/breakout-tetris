@@ -29,10 +29,15 @@ public class BrickManager : MonoBehaviour {
 	public float verticalOffset = 50f;		// Distance between blocks that are placed above or below each other
 
 	public GameObject brickPrefab;
+    public AudioClip[] clearRowSounds;
+
 
 	private Brick[,] brickMatrix;
 	private Ball ball;
 	private Score score;
+
+    private AudioSource _audioSource;
+ 
 
 	void Start () {
 		ball = (Ball)GameObject.Find("Ball_Particles").GetComponent(typeof(Ball));
@@ -131,5 +136,8 @@ public class BrickManager : MonoBehaviour {
 				brickMatrix[x, y] = null;
 			}
 		}
-	}
+
+        _audioSource.clip = clearRowSounds[Random.Range(0, 2)];
+        _audioSource.Play();
+    }
 }
