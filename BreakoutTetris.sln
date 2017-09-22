@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BreakoutTetris", "Assembly-CSharp.csproj", "{002C3D9F-2044-A942-56C1-F7DE514B75DC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{002C3D9F-2044-A942-56C1-F7DE514B75DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{002C3D9F-2044-A942-56C1-F7DE514B75DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{002C3D9F-2044-A942-56C1-F7DE514B75DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{002C3D9F-2044-A942-56C1-F7DE514B75DC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
+	EndGlobalSection
+EndGlobal
