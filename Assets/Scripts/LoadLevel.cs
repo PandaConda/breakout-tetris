@@ -5,8 +5,17 @@ using UnityEngine.SceneManagement;
 
 public class LoadLevel : MonoBehaviour {
 
-    public void LoadGame()
-    {
-        SceneManager.LoadScene("Level", LoadSceneMode.Single);
-    }
+	public void Update() {
+		if (Input.anyKeyDown) {
+			StartGame();
+		}
+	}
+
+	public static void StartGame() {
+		SceneManager.LoadScene("Level", LoadSceneMode.Single);
+	}
+
+	public static void StopGame() {
+		SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
+	}
 }

@@ -42,6 +42,7 @@ public class BrickManager : MonoBehaviour {
  
 
 	void Start () {
+		_audioSource = gameObject.AddComponent<AudioSource>();
 		ball = (Ball)GameObject.Find("Ball_Particles").GetComponent(typeof(Ball));
 		score = (Score)GameObject.Find("Score Value").GetComponent(typeof(Score));
 		brickMatrix = new Brick[rowSize, columnSize];

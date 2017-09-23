@@ -16,7 +16,8 @@ public class Lives : MonoBehaviour {
 		score = (Score)GameObject.Find("Score Value").GetComponent(typeof(Score));
 		brickManager = (BrickManager)GameObject.Find("BrickManager").GetComponent(typeof(BrickManager));
 		textbox = GetComponent<Text>();
-		Reset();
+		lives = livesAtStart;
+		textbox.text = lives.ToString();
 	}
 	
 	// Update is called once per frame
@@ -26,20 +27,9 @@ public class Lives : MonoBehaviour {
 
 	public void Die() {
 		if (--lives < 0) {
-			Reset();
-			score.Reset();
-			brickManager.Reset();
+			LoadLevel.StopGame();
 		} else {
 			textbox.text = lives.ToString();
 		}
-	}
-
-	private void Set(int lives) {
-		this.lives = lives;
-	}
-
-	private void Reset() {
-		lives = livesAtStart;
-		textbox.text = lives.ToString();
 	}
 }
