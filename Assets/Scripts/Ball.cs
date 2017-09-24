@@ -21,6 +21,15 @@ public class Ball : MonoBehaviour {
 
 	}
 
+
+	void Update() {
+		if(Input.GetKeyUp(KeyCode.Space)) {
+			lives.Die();
+			StartGame();
+		}
+		
+	}
+
 	private void StartGame() {
 		body = GetComponent<Rigidbody2D>();
 		body.position = startPosition;
